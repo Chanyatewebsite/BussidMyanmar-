@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KCMT BUSSID FAMILY</title>
+    <title>KCMT BUSSID FAMILY Official</title>
     <style>
-        /* အခြေခံ ဒီဇိုင်းများ */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         
         body { 
@@ -52,18 +51,18 @@
         .bus-small-row { display: flex; gap: 10px; }
         .bus-small { width: 48%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        /* --- Content Styles --- */
-        .price-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #ccc; font-weight: bold; color: #1E3A8A; font-size: 18px; }
+        /* --- Rules Styles --- */
         .rule-box { background: #f0f7ff; padding: 15px; border-radius: 15px; margin-bottom: 15px; text-align: left; border-left: 5px solid #0d3b85; }
         .rule-box h4 { margin-bottom: 10px; color: #0d3b85; border-bottom: 1px solid #d0e4ff; }
         .rule-box p { font-size: 14.5px; line-height: 1.6; margin-bottom: 8px; }
+        .important-box { background: #fff3e0; border-left: 5px solid #ff9800; }
+        .important-box h4 { color: #e65100; }
 
         .contact-section { 
             background: #0d3b85; color: white; padding: 20px; border-radius: 20px; 
             text-align: left; margin-top: 20px; 
         }
         .contact-section h4 { border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; margin-bottom: 10px; }
-        .contact-section p { font-size: 14px; margin-bottom: 8px; font-weight: 500; }
 
         .back-btn { background: #0d3b85; color: white; padding: 10px 20px; border-radius: 10px; border: none; margin-bottom: 15px; cursor: pointer; float: left; }
     </style>
@@ -89,8 +88,6 @@
         <div class="kcmt-logo" style="font-size: 40px;">KCMT</div>
         <div class="auth-card">
             <h2>အကောင့်သစ်ဖွင့်ရန်</h2>
-            <input type="Name" id="regname"
-                placeholder="အမည် (Name)">
             <input type="email" id="regEmail" placeholder="အီးမေးလ် (Email)">
             <input type="password" id="regPass" placeholder="စကားဝှက် (Password)">
             <button class="btn btn-signup" style="padding: 14px;" onclick="register()">Sign Up</button>
@@ -138,16 +135,15 @@
         <div class="white-section">
             <button class="back-btn" onclick="navTo('menuPage')">← Back</button>
             <h3 style="margin-bottom: 20px; clear: both;">Skin ဈေးနှုန်းများ</h3>
-            <div class="price-row"><span>Yutong</span> <span>2000</span></div>
-            <div class="price-row"><span>SCANIA</span> <span>1000</span></div>
-            <div class="price-row"><span>HIGER</span> <span>2000</span></div>
-            <div class="price-row"><span>ZhongTong</span> <span>2000</span></div>
-            <div class="price-row"><span>SUNLONG</span> <span>2000</span></div>
-            <h4 style="margin: 15px 0; color: #0d3b85;">Bus Mod-ဈေးနှုန်းအစားအစား</h4>
             <div class="rule-box">
-                <p><strong>SKIN BY KCMT OWNER Name နဲ့ Skin ရပါမယ်</strong></p>
-                <p>Skin ဆွဲရာ ကြာချိန် - 1Day or 2Day</p>
-                <p style="margin-top: 10px;">သင်စိတ်ကြိုက်ပြုလုပ်ပေးပါတယ်နော်၊ မကြိုက်ရင် ပြင်ဆင်ခွင့် ၁ ကြိမ် ပေးပါတယ်။</p>
+                <p><strong>Yutong:</strong> 2000 | <strong>SCANIA:</strong> 1000</p>
+                <p><strong>HIGER:</strong> 2000 | <strong>ZhongTong:</strong> 2000</p>
+                <p><strong>SUNLONG:</strong> 2000</p>
+            </div>
+            <div class="rule-box important-box">
+                <h4>[ Skin ထည့်နည်း ]</h4>
+                <p>📌 Skin ထည့်နည်းကို Photo ဖြင့် သေချာရှင်းပြထားပါသည်။</p>
+                <p>Skin ဆွဲရာကြာချိန် - 1Day or 2Day</p>
             </div>
             <div class="contact-section">
                 <h4>ဝယ်ချင်ပါက ဆက်သွယ်ရန် 🌐</h4>
@@ -162,23 +158,32 @@
         <div class="white-section">
             <button class="back-btn" onclick="navTo('menuPage')">← Back</button>
             <h3 style="margin-bottom: 20px; clear: both;">စည်းကမ်းချက်များ</h3>
+            
             <div class="rule-box">
-                <h4>[ စည်းကမ်းချက်များ ]</h4>
-                <p>၁။ GP ထဲတွင် ဆဲဆိုခြင်းမလုပ်ရပါ။ မလိုက်နာပါက GP မှ ထုတ်ပယ်မည်။</p>
-                <p>၂။ Room မောင်းချိန် မလိုက်နိုင်ပါက Owner နှင့် Admin များသို့ ပြောကြားနိုင်ပါတယ်။</p>
-                <p>၃။ နေ့စဉ်ည - MM Time 8:30 PM / Thai Time 9:00 PM</p>
+                <h4>[ သိထားရန် ]</h4>
+                <p>• APK OBB ထည့်တတ်ရမည် (Video နှင့်ရှင်းပြထားသည်)</p>
+                <p>• Room ဝင်တတ်ရမည် (Photo နှင့်ရှင်းပြထားသည်)</p>
+                <p>• Skin ထည့်တတ်ရမည် (Photo နှင့်ရှင်းပြထားသည်)</p>
             </div>
+
+            <div class="rule-box important-box">
+                <h4>[ အရေးကြီးဆုံး စည်းကမ်း ]</h4>
+                <p>• ကားကိုသေချာမောင်းတတ်ရမည်။</p>
+                <p>• စီယာတိုင်ကို ကောင်းကောင်းထိန်းတတ်ရမည်။</p>
+                <p>• ကားပါကင်ကို စနစ်တကျ ကောင်းကောင်းထိုးတတ်ရမည်။</p>
+            </div>
+
             <div class="rule-box">
-                <h4>[ ROOM စည်းကမ်းချက်များ ]</h4>
-                <p>၁။ ကားကျော်မည်ဆို မီးထောက်ပြပါ။ ညာပြမှကျော်ပါ၊ ဘယ်ပြရင် မကျော်ပါနဲ့။</p>
-                <p>၂။ Video ရိုက်ချိန် ကားတန်းစီပြီး 100Km/h သာ မောင်းပါ။</p>
-                <p>၃။ Video ရိုက်စဉ် မီးထောက်ပါ (သို့မဟုတ်) ကားဟွန်းတီးပေးပါ။</p>
+                <h4>[ GP & Room Rules ]</h4>
+                <p>၁။ GP ထဲတွင် ဆဲဆိုခြင်းမလုပ်ရပါ။</p>
+                <p>၂။ Room မောင်းချိန် ညာပြမှကျော်ပါ၊ ဘယ်ပြရင် မကျော်ပါနဲ့။</p>
+                <p>၃။ Video ရိုက်စဉ် ၁၀၀ ကျော် မမောင်းရပါ။</p>
             </div>
+
             <div class="contact-section">
                 <h4>ဝင်ချင်ပါက ဆက်သွယ်ရန် 🌐</h4>
                 <p>OWNER - @Kcmtbussidfamilyofficial</p>
-                <p>ADMIN 1 - @mgkhannt</p>
-                <p>ADMIN 2 - @Karl_Saxby</p>
+                <p>ADMIN 1 - @mgkhannt | ADMIN 2 - @Karl_Saxby</p>
             </div>
         </div>
     </div>
@@ -190,7 +195,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
 <script>
-    // Firebase Configuration
+    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyC2bUX2HzRYeRxQ8ogZ4t9Fe8MF3Kze_rI",
       authDomain: "bussidmyanmar.firebaseapp.com",
@@ -202,58 +207,36 @@
       measurementId: "G-2ZDDZRYH18"
     };
 
-    // Firebase ကိုစတင်အသုံးပြုခြင်း
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // အကောင့်ဝင်ထားခြင်းရှိမရှိ အမြဲစစ်ဆေးနေမည့်စနစ်
     auth.onAuthStateChanged((user) => {
-        if (user) {
-            navTo('menuPage'); // ဝင်ထားလျှင် Menu သို့တန်းပို့မည်
-        } else {
-            navTo('landingPage'); // မဝင်ထားလျှင် Landing သို့ပြမည်
-        }
+        if (user) { navTo('menuPage'); } 
+        else { navTo('landingPage'); }
     });
 
-    // Page များအကူးအပြောင်းလုပ်ရန်
     function navTo(id) {
         const pages = ['landingPage', 'registerPage', 'loginPage', 'menuPage', 'skinPage', 'rulesPage'];
         pages.forEach(p => document.getElementById(p).style.display = 'none');
         document.getElementById(id).style.display = 'block';
-
-        if(id === 'menuPage' || id === 'skinPage' || id === 'rulesPage') { 
-            document.body.style.background = "#0d3b85"; 
-        } else { 
-            document.body.style.background = "linear-gradient(180deg, #2196F3 0%, #E3F2FD 100%)"; 
-        }
+        document.body.style.background = ['menuPage', 'skinPage', 'rulesPage'].includes(id) ? "#0d3b85" : "linear-gradient(180deg, #2196F3 0%, #E3F2FD 100%)";
         window.scrollTo(0,0);
     }
 
-    // အကောင့်သစ်ဖွင့်ရန် (Register)
     function register() {
         const email = document.getElementById('regEmail').value;
         const pass = document.getElementById('regPass').value;
-        if(!email || !pass) return alert("Email နှင့် Password ဖြည့်ပါ");
-
-        auth.createUserWithEmailAndPassword(email, pass)
-            .then(() => alert("အကောင့်ဖွင့်ခြင်း အောင်မြင်ပါသည်"))
-            .catch(err => alert(err.message));
+        if(!email || !pass) return alert("ဖြည့်စွက်ပါ");
+        auth.createUserWithEmailAndPassword(email, pass).catch(err => alert(err.message));
     }
 
-    // အကောင့်ဝင်ရန် (Login)
     function login() {
         const email = document.getElementById('loginEmail').value;
         const pass = document.getElementById('loginPass').value;
-        if(!email || !pass) return alert("Email နှင့် Password ဖြည့်ပါ");
-
-        auth.signInWithEmailAndPassword(email, pass)
-            .catch(err => alert("အီးမေးလ် သို့မဟုတ် စကားဝှက် မှားယွင်းနေပါသည်။"));
+        auth.signInWithEmailAndPassword(email, pass).catch(err => alert("မှားယွင်းနေပါသည်"));
     }
 
-    // အကောင့်ထွက်ရန် (Logout)
-    function logout() {
-        auth.signOut();
-    }
+    function logout() { auth.signOut(); }
 </script>
 
 </body>
