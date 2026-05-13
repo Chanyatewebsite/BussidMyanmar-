@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCMT BUSSID FAMILY</title>
+    <style>
+        /* အခြေခံ ဒီဇိုင်းများ */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body { 
+            background: linear-gradient(180deg, #2196F3 0%, #E3F2FD 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            transition: background 0.4s;
+        }
+
+        .container { width: 100%; max-width: 450px; position: relative; }
+
+        /* --- Landing & Auth Pages --- */
+        #landingPage, .auth-page { text-align: center; padding: 50px 20px; color: white; display: none; }
+        .kcmt-logo { font-size: 70px; font-weight: 900; font-style: italic; line-height: 0.8; text-shadow: 2px 4px 10px rgba(0,0,0,0.2); }
+        .family-tag { font-size: 18px; font-weight: bold; margin-bottom: 50px; }
+        
+        .btn {
+            width: 100%; padding: 18px; margin: 12px 0; border: none; border-radius: 40px;
+            font-size: 20px; font-weight: bold; cursor: pointer; color: white; box-shadow: 0 6px 0 rgba(0,0,0,0.1);
+        }
+        .btn-signup { background: #03A9F4; }
+        .btn-login { background: #1E3A8A; }
+
+        .auth-card { background: white; padding: 30px; border-radius: 25px; color: #333; margin-top: 20px; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ddd; border-radius: 12px; outline: none; }
+
+        /* --- Content Layout --- */
+        .app-page { display: none; text-align: center; width: 100%; }
+        .header-title { padding: 35px 0; color: white; font-style: italic; font-size: 28px; font-weight: 900; }
+        .white-section { background: white; border-radius: 50px 50px 0 0; min-height: 90vh; padding: 30px 20px; color: #333; }
+
+        /* --- Menu Items --- */
+        .menu-item { 
+            background: #e9f2ff; padding: 18px; border-radius: 20px; display: flex; 
+            align-items: center; margin-bottom: 15px; text-decoration: none; color: #0d3b85; 
+            font-weight: bold; font-size: 17px; cursor: pointer; 
+        }
+        .menu-item img { width: 40px; height: 40px; border-radius: 50%; margin-right: 15px; }
+
+        /* Bus Gallery */
+        .bus-gallery { margin-top: 25px; display: flex; flex-direction: column; gap: 15px; }
+        .bus-large { width: 100%; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .bus-small-row { display: flex; gap: 10px; }
+        .bus-small { width: 48%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        /* --- Content Styles --- */
+        .price-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #ccc; font-weight: bold; color: #1E3A8A; font-size: 18px; }
+        .rule-box { background: #f0f7ff; padding: 15px; border-radius: 15px; margin-bottom: 15px; text-align: left; border-left: 5px solid #0d3b85; }
+        .rule-box h4 { margin-bottom: 10px; color: #0d3b85; border-bottom: 1px solid #d0e4ff; }
+        .rule-box p { font-size: 14.5px; line-height: 1.6; margin-bottom: 8px; }
+
+        .contact-section { 
+            background: #0d3b85; color: white; padding: 20px; border-radius: 20px; 
+            text-align: left; margin-top: 20px; 
+        }
+        .contact-section h4 { border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; margin-bottom: 10px; }
+        .contact-section p { font-size: 14px; margin-bottom: 8px; font-weight: 500; }
+
+        .back-btn { background: #0d3b85; color: white; padding: 10px 20px; border-radius: 10px; border: none; margin-bottom: 15px; cursor: pointer; float: left; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Landing Page -->
+    <div id="landingPage">
+        <div class="kcmt-logo">KCMT</div>
+        <div class="family-tag">BUSSID FAMILY</div>
+        <button class="btn btn-signup" onclick="navTo('registerPage')">အကောင့်သစ်ဖွင့်ရန်</button>
+        <button class="btn btn-login" onclick="navTo('loginPage')">ဆိုင်းအင်လုပ်ခြင်း</button>
+        <div style="margin-top: 50px;">
+            <p style="text-shadow: 0 0 10px #00d2ff; font-weight: bold;">မြန်မာနိုင်ငံရဲ့ ပထမဦးဆုံး</p>
+            <h2 style="font-style: italic;">BUSSID WEBSITE</h2>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="auth-page">
+        <div class="kcmt-logo" style="font-size: 40px;">KCMT</div>
+        <div class="auth-card">
+            <h2>အကောင့်သစ်ဖွင့်ရန်</h2>
+            <input type="Name" id="regname"
+                placeholder="အမည် (Name)">
+            <input type="email" id="regEmail" placeholder="အီးမေးလ် (Email)">
+            <input type="password" id="regPass" placeholder="စကားဝှက် (Password)">
+            <button class="btn btn-signup" style="padding: 14px;" onclick="register()">Sign Up</button>
+        </div>
+        <p style="margin-top: 20px; cursor: pointer;" onclick="navTo('landingPage')">Back</p>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="auth-page">
+        <div class="kcmt-logo" style="font-size: 40px;">KCMT</div>
+        <div class="auth-card">
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="အီးမေးလ် (Email)">
+            <input type="password" id="loginPass" placeholder="စကားဝှက် (Password)">
+            <button class="btn btn-login" style="padding: 14px;" onclick="login()">Login</button>
+        </div>
+        <p style="margin-top: 20px; cursor: pointer;" onclick="navTo('landingPage')">Back</p>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="menuPage" class="app-page">
+        <div class="header-title">KCMT BUSSID FAMILY</div>
+        <div class="white-section">
+            <div class="menu-item" onclick="navTo('skinPage')">
+                <img src="https://i.postimg.cc/J4pXRwMn/IMG-20260511-210017-466.png"> BUSSID SKIN Service
+            </div>
+            <div class="menu-item" onclick="navTo('rulesPage')">
+                <img src="https://i.postimg.cc/WbYdQMwM/IMG-20260511-210016-857.png"> KCMT စည်းကမ်းချက် များသိရန်
+            </div>
+
+            <div class="bus-gallery">
+                <img src="https://i.postimg.cc/RCD9mG2Z/IMG-20260511-210717-440.jpg" class="bus-large">
+                <div class="bus-small-row">
+                    <img src="https://i.postimg.cc/nzc0pbQD/IMG-20260511-210016-533.png" class="bus-small">
+                    <img src="https://i.postimg.cc/wMnVX14m/IMG-20260511-210016-883.png" class="bus-small">
+                </div>
+            </div>
+            <p style="color: red; margin-top: 25px; cursor: pointer;" onclick="logout()">Logout</p>
+        </div>
+    </div>
+
+    <!-- Skin Service Page -->
+    <div id="skinPage" class="app-page">
+        <div class="header-title">KCMT BUSSID FAMILY</div>
+        <div class="white-section">
+            <button class="back-btn" onclick="navTo('menuPage')">← Back</button>
+            <h3 style="margin-bottom: 20px; clear: both;">Skin ဈေးနှုန်းများ</h3>
+            <div class="price-row"><span>Yutong</span> <span>2000</span></div>
+            <div class="price-row"><span>SCANIA</span> <span>1000</span></div>
+            <div class="price-row"><span>HIGER</span> <span>2000</span></div>
+            <div class="price-row"><span>ZhongTong</span> <span>2000</span></div>
+            <div class="price-row"><span>SUNLONG</span> <span>2000</span></div>
+            <h4 style="margin: 15px 0; color: #0d3b85;">Bus Mod-ဈေးနှုန်းအစားအစား</h4>
+            <div class="rule-box">
+                <p><strong>SKIN BY KCMT OWNER Name နဲ့ Skin ရပါမယ်</strong></p>
+                <p>Skin ဆွဲရာ ကြာချိန် - 1Day or 2Day</p>
+                <p style="margin-top: 10px;">သင်စိတ်ကြိုက်ပြုလုပ်ပေးပါတယ်နော်၊ မကြိုက်ရင် ပြင်ဆင်ခွင့် ၁ ကြိမ် ပေးပါတယ်။</p>
+            </div>
+            <div class="contact-section">
+                <h4>ဝယ်ချင်ပါက ဆက်သွယ်ရန် 🌐</h4>
+                <p>OWNER - @Kcmtbussidfamilyofficial</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rules Page -->
+    <div id="rulesPage" class="app-page">
+        <div class="header-title">KCMT BUSSID FAMILY</div>
+        <div class="white-section">
+            <button class="back-btn" onclick="navTo('menuPage')">← Back</button>
+            <h3 style="margin-bottom: 20px; clear: both;">စည်းကမ်းချက်များ</h3>
+            <div class="rule-box">
+                <h4>[ စည်းကမ်းချက်များ ]</h4>
+                <p>၁။ GP ထဲတွင် ဆဲဆိုခြင်းမလုပ်ရပါ။ မလိုက်နာပါက GP မှ ထုတ်ပယ်မည်။</p>
+                <p>၂။ Room မောင်းချိန် မလိုက်နိုင်ပါက Owner နှင့် Admin များသို့ ပြောကြားနိုင်ပါတယ်။</p>
+                <p>၃။ နေ့စဉ်ည - MM Time 8:30 PM / Thai Time 9:00 PM</p>
+            </div>
+            <div class="rule-box">
+                <h4>[ ROOM စည်းကမ်းချက်များ ]</h4>
+                <p>၁။ ကားကျော်မည်ဆို မီးထောက်ပြပါ။ ညာပြမှကျော်ပါ၊ ဘယ်ပြရင် မကျော်ပါနဲ့။</p>
+                <p>၂။ Video ရိုက်ချိန် ကားတန်းစီပြီး 100Km/h သာ မောင်းပါ။</p>
+                <p>၃။ Video ရိုက်စဉ် မီးထောက်ပါ (သို့မဟုတ်) ကားဟွန်းတီးပေးပါ။</p>
+            </div>
+            <div class="contact-section">
+                <h4>ဝင်ချင်ပါက ဆက်သွယ်ရန် 🌐</h4>
+                <p>OWNER - @Kcmtbussidfamilyofficial</p>
+                <p>ADMIN 1 - @mgkhannt</p>
+                <p>ADMIN 2 - @Karl_Saxby</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Firebase Scripts -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+<script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC2bUX2HzRYeRxQ8ogZ4t9Fe8MF3Kze_rI",
+      authDomain: "bussidmyanmar.firebaseapp.com",
+      databaseURL: "https://bussidmyanmar-default-rtdb.firebaseio.com",
+      projectId: "bussidmyanmar",
+      storageBucket: "bussidmyanmar.firebasestorage.app",
+      messagingSenderId: "280052704185",
+      appId: "1:280052704185:web:275ad6c0eaab6aef5bcc68",
+      measurementId: "G-2ZDDZRYH18"
+    };
+
+    // Firebase ကိုစတင်အသုံးပြုခြင်း
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // အကောင့်ဝင်ထားခြင်းရှိမရှိ အမြဲစစ်ဆေးနေမည့်စနစ်
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            navTo('menuPage'); // ဝင်ထားလျှင် Menu သို့တန်းပို့မည်
+        } else {
+            navTo('landingPage'); // မဝင်ထားလျှင် Landing သို့ပြမည်
+        }
+    });
+
+    // Page များအကူးအပြောင်းလုပ်ရန်
+    function navTo(id) {
+        const pages = ['landingPage', 'registerPage', 'loginPage', 'menuPage', 'skinPage', 'rulesPage'];
+        pages.forEach(p => document.getElementById(p).style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+
+        if(id === 'menuPage' || id === 'skinPage' || id === 'rulesPage') { 
+            document.body.style.background = "#0d3b85"; 
+        } else { 
+            document.body.style.background = "linear-gradient(180deg, #2196F3 0%, #E3F2FD 100%)"; 
+        }
+        window.scrollTo(0,0);
+    }
+
+    // အကောင့်သစ်ဖွင့်ရန် (Register)
+    function register() {
+        const email = document.getElementById('regEmail').value;
+        const pass = document.getElementById('regPass').value;
+        if(!email || !pass) return alert("Email နှင့် Password ဖြည့်ပါ");
+
+        auth.createUserWithEmailAndPassword(email, pass)
+            .then(() => alert("အကောင့်ဖွင့်ခြင်း အောင်မြင်ပါသည်"))
+            .catch(err => alert(err.message));
+    }
+
+    // အကောင့်ဝင်ရန် (Login)
+    function login() {
+        const email = document.getElementById('loginEmail').value;
+        const pass = document.getElementById('loginPass').value;
+        if(!email || !pass) return alert("Email နှင့် Password ဖြည့်ပါ");
+
+        auth.signInWithEmailAndPassword(email, pass)
+            .catch(err => alert("အီးမေးလ် သို့မဟုတ် စကားဝှက် မှားယွင်းနေပါသည်။"));
+    }
+
+    // အကောင့်ထွက်ရန် (Logout)
+    function logout() {
+        auth.signOut();
+    }
+</script>
+
+</body>
+</html>
