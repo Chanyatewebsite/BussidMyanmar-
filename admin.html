@@ -7,7 +7,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .admin-container { width: 100%; max-width: 1100px; background: #1e293b; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .admin-container { width: 100%; max-width: 1200px; background: #1e293b; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         h2, h3 { margin-bottom: 15px; color: #38bdf8; text-align: center; }
         
         .verify-box, .panel-content { display: none; }
@@ -23,8 +23,8 @@
         
         .ctrl-card { background: #0f172a; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
         
-        /* စနစ်တကျ ပြုလုပ်ထားသော User List Table Wrapper */
-        .table-wrapper { overflow-x: auto; background: #1e293b; border-radius: 10px; padding: 5px; max-height: 350px; margin-top: 10px; border: 1px solid #334155; }
+        /* Table Style */
+        .table-wrapper { overflow-x: auto; background: #1e293b; border-radius: 10px; padding: 5px; max-height: 380px; margin-top: 10px; border: 1px solid #334155; }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
         th, td { padding: 12px 10px; border-bottom: 1px solid #334155; word-break: break-all; }
         th { color: #38bdf8; background: #0f172a; position: sticky; top: 0; z-index: 5; }
@@ -53,6 +53,7 @@
 
     <div id="verifyStep" class="verify-box">
         <h2>Security Check</h2>
+        <p style="text-align: center; color: #94a3b8; margin-bottom: 10px;">ကျေးဇူးပြု၍ Admin Username ထည့်သွင်းပါ</p>
         <input type="text" id="adminUserKey" placeholder="Admin Username">
         <button class="btn" onclick="verifyAdminKey()">Verify & Enter</button>
     </div>
@@ -67,11 +68,11 @@
                 <select id="ruleSelect" onchange="checkRuleType()">
                     <option value="new">[ စည်းကမ်းချက်အသစ်ထည့်ရန် ]</option>
                 </select>
-                <input type="text" id="ruleTitle" placeholder="ခေါင်းစဉ် (ဥပမာ- ROOM စည်းကမ်း)">
-                <textarea id="ruleContent" rows="4" placeholder="စည်းကမ်းချက် အသေးစိတ် ရေးရန်..."></textarea>
+                <input type="text" id="ruleTitle" placeholder="ခေါင်းစဉ်">
+                <textarea id="ruleContent" rows="4" placeholder="စည်းကမ်းချက် အသေးစိတ်..."></textarea>
                 <select id="ruleImportant">
                     <option value="false">သာမန် စည်းကမ်းချက်</option>
-                    <option value="true">အရေးကြီး စည်းကမ်းချက် (လိမ္မော်ရောင်ကွက်)</option>
+                    <option value="true">အရေးကြီး စည်းကမ်းချက် (လိမ္မော်ကွက်)</option>
                 </select>
                 <button class="btn" onclick="saveRule()">Save Rule</button>
                 <button class="btn btn-danger" id="delRuleBtn" style="display:none;" onclick="deleteRule()">Delete Rule</button>
@@ -84,8 +85,8 @@
             
             <div class="ctrl-card">
                 <h3>Skin Price Control</h3>
-                <input type="text" id="skinName" placeholder="ကားအမျိုးအစား (ဥပမာ- Yutong)">
-                <input type="text" id="skinPrice" placeholder="ဈေးနှုန်း (ဥပမာ- 2000)">
+                <input type="text" id="skinName" placeholder="ကားအမျိုးအစား">
+                <input type="text" id="skinPrice" placeholder="ဈေးနှုန်း">
                 <button class="btn" onclick="addSkinPrice()">Add Skin Price</button>
                 
                 <div class="table-wrapper" style="max-height: 200px;">
@@ -102,7 +103,7 @@
             
             <div class="ctrl-card">
                 <h3>User Management</h3>
-                <p style="font-size: 12px; color: #94a3b8; margin-bottom: 5px; text-align: center;">စုစုပေါင်းဝင်ထားသော User စာရင်းနှင့် ထိန်းချုပ်မှု</p>
+                <p style="font-size: 12px; color: #38bdf8; text-align: center; font-weight: bold;" id="userCount">စုစုပေါင်း: 0 ယောက်</p>
                 
                 <div class="table-wrapper">
                     <table>
@@ -119,8 +120,8 @@
                 </div>
                 
                 <hr style="border: 1px solid #334155; margin: 15px 0;">
-                <h3>Broadcast Notification</h3>
-                <textarea id="broadcastMsg" rows="3" placeholder="User အားလုံးဆီ စာတိုတစ်ပြိုင်နက်ပို့ရန်..."></textarea>
+                <h3>Broadcast Announcement</h3>
+                <textarea id="broadcastMsg" rows="3" placeholder="User အားလုံးဆီ တစ်ပြိုင်နက်စာပို့ရန်..."></textarea>
                 <button class="btn" onclick="sendBroadcast()">Send Announcement</button>
             </div>
 
@@ -135,6 +136,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
 <script>
+    // Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyC2bUX2HzRYeRxQ8ogZ4t9Fe8MF3Kze_rI",
       authDomain: "bussidmyanmar.firebaseapp.com",
@@ -155,19 +157,22 @@
     function adminLogin() {
         const email = document.getElementById('adminEmail').value;
         const pass = document.getElementById('adminPass').value;
+        if(!email || !pass) return alert("Email နှင့် Password ဖြည့်စွက်ပါ");
+
         auth.signInWithEmailAndPassword(email, pass)
             .then(() => {
                 document.getElementById('loginStep').style.display = 'none';
                 document.getElementById('verifyStep').style.display = 'block';
-            }).catch(() => alert("ဝင်ရောက်ခွင့်မရှိပါ။"));
+            }).catch(() => alert("ဝင်ရောက်ခွင့်မရှိပါ သို့မဟုတ် အချက်အလက်မှားယွင်းနေပါသည်။"));
     }
 
     function verifyAdminKey() {
+        // Admin Username 'Bussid' ဖြစ်ရမည်
         if (document.getElementById('adminUserKey').value === "Bussid") {
             document.getElementById('verifyStep').style.display = 'none';
             document.getElementById('adminPanel').style.display = 'block';
             initAdminDashboard();
-        } else { alert("Key မှားယွင်းနေပါသည်။"); }
+        } else { alert("Admin Username Key မှားယွင်းနေပါသည်။"); }
     }
 
     function initAdminDashboard() {
@@ -179,7 +184,7 @@
         db.ref('app_data/contacts/skin_page').once('value', s => { if(s.val()) document.getElementById('skinContactInput').value = s.val(); });
     }
 
-    /* --- User List & Management Logic --- */
+    /* --- Realtime User List & Management --- */
     function loadUsers() {
         db.ref('users').on('value', (snapshot) => {
             const tbody = document.getElementById('userTableBody');
@@ -187,19 +192,20 @@
             
             if(!snapshot.exists()) {
                 tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#94a3b8;">User စာရင်းမရှိသေးပါ</td></tr>`;
+                document.getElementById('userCount').innerText = "စုစုပေါင်း: 0 ယောက်";
                 return;
             }
 
+            let count = 0;
             snapshot.forEach(child => {
+                count++;
                 const userId = child.key;
                 const userData = child.val();
                 
-                // Active သို့မဟုတ် Banned ပြသရန် Badge ဒီဇိုင်း
                 const statusBadge = userData.isBanned ? 
                     `<span class="status-banned">Banned</span>` : 
                     `<span class="status-active">Active</span>`;
                 
-                // Ban ရန်/Unban ရန် ခလုတ်များ
                 const actionButton = userData.isBanned ? 
                     `<button class="action-btn unban-btn" onclick="changeUserStatus('${userId}', false)">Unban</button>` : 
                     `<button class="action-btn ban-btn" onclick="changeUserStatus('${userId}', true)">Ban User</button>`;
@@ -210,6 +216,7 @@
                     <td>${actionButton}</td>
                 </tr>`;
             });
+            document.getElementById('userCount').innerText = `စုစုပေါင်း: ${count} ယောက်`;
         });
     }
 
@@ -217,11 +224,11 @@
         const confirmText = banState ? "ဤဝင်ရောက်သူကို တကယ် Ban မှာ သေချာပါသလား?" : "ဤဝင်ရောက်သူကို Unban ပေးမှာ သေချာပါသလား?";
         if(confirm(confirmText)) {
             db.ref('users/' + userId).update({ isBanned: banState })
-              .then(() => alert("User အခြေအနေ ပြောင်းလဲမှု အောင်မြင်သည်"));
+              .then(() => alert("User Management လုပ်ဆောင်ချက် အောင်မြင်ပါသည်"));
         }
     }
 
-    /* --- Rules Operations --- */
+    /* --- Rules Control Logic --- */
     function loadRulesDropdown() {
         db.ref('app_data/rules').on('value', (snapshot) => {
             const select = document.getElementById('ruleSelect');
@@ -271,11 +278,11 @@
         }
     }
 
-    /* --- Skin Price Operations --- */
+    /* --- Skin Price Logic --- */
     function addSkinPrice() {
         const name = document.getElementById('skinName').value;
         const price = document.getElementById('skinPrice').value;
-        if(!name || !price) return alert("ဖြည့်စွက်ပါ");
+        if(!name || !price) return alert("အချက်အလက် ဖြည့်စွက်ပါ");
 
         db.ref('app_data/skin_prices').push({ name, price }).then(() => {
             document.getElementById('skinName').value = "";
@@ -304,9 +311,9 @@
 
     function sendBroadcast() {
         const msg = document.getElementById('broadcastMsg').value;
-        if(!msg) return;
+        if(!msg) return alert("စာသားရေးပါ");
         db.ref('broadcast').set({ message: msg, timestamp: Date.now() }).then(() => {
-            alert("Broadcast ပို့ပြီးပါပြီ");
+            alert("Broadcast Annoucement ပို့ပြီးပါပြီ");
             document.getElementById('broadcastMsg').value = "";
         });
     }
