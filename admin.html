@@ -7,7 +7,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .admin-container { width: 100%; max-width: 1000px; background: #1e293b; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .admin-container { width: 100%; max-width: 1100px; background: #1e293b; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         h2, h3 { margin-bottom: 15px; color: #38bdf8; text-align: center; }
         
         .verify-box, .panel-content { display: none; }
@@ -17,17 +17,26 @@
         .btn-danger { background: #ef4444; }
         .btn-danger:hover { background: #dc2626; }
         
+        /* 3 Columns Dashboard Grid */
         .dashboard-grid { display: grid; grid-template-columns: 100%; gap: 25px; margin-top: 20px; }
-        @media (min-width: 900px) { .dashboard-grid { grid-template-columns: 32% 32% 32%; } }
+        @media (min-width: 950px) { .dashboard-grid { grid-template-columns: 31% 31% 34%; } }
         
-        .ctrl-card { background: #0f172a; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .table-wrapper { overflow-x: auto; background: #0f172a; border-radius: 12px; padding: 10px; max-height: 250px; margin-top: 10px; }
+        .ctrl-card { background: #0f172a; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+        
+        /* စနစ်တကျ ပြုလုပ်ထားသော User List Table Wrapper */
+        .table-wrapper { overflow-x: auto; background: #1e293b; border-radius: 10px; padding: 5px; max-height: 350px; margin-top: 10px; border: 1px solid #334155; }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
-        th, td { padding: 10px; border-bottom: 1px solid #334155; }
-        th { color: #38bdf8; }
+        th, td { padding: 12px 10px; border-bottom: 1px solid #334155; word-break: break-all; }
+        th { color: #38bdf8; background: #0f172a; position: sticky; top: 0; z-index: 5; }
         
-        .status-active { color: #22c55e; font-weight: bold; }
-        .status-banned { color: #ef4444; font-weight: bold; }
+        .action-btn { padding: 5px 10px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; font-size: 12px; }
+        .ban-btn { background: #ef4444; color: white; }
+        .ban-btn:hover { background: #dc2626; }
+        .unban-btn { background: #22c55e; color: white; }
+        .unban-btn:hover { background: #16a34a; }
+        
+        .status-active { color: #22c55e; font-weight: bold; background: rgba(34, 197, 94, 0.1); padding: 3px 8px; border-radius: 20px; display: inline-block; }
+        .status-banned { color: #ef4444; font-weight: bold; background: rgba(239, 68, 68, 0.1); padding: 3px 8px; border-radius: 20px; display: inline-block; }
         .logout-btn { background: #475569; margin-top: 20px; width: 150px; }
     </style>
 </head>
@@ -79,7 +88,7 @@
                 <input type="text" id="skinPrice" placeholder="ဈေးနှုန်း (ဥပမာ- 2000)">
                 <button class="btn" onclick="addSkinPrice()">Add Skin Price</button>
                 
-                <div class="table-wrapper">
+                <div class="table-wrapper" style="max-height: 200px;">
                     <table>
                         <thead><tr><th>Name</th><th>Price</th><th>Action</th></tr></thead>
                         <tbody id="skinTableBody"></tbody>
@@ -92,18 +101,27 @@
             </div>
             
             <div class="ctrl-card">
-                <h3>User Control</h3>
-                <div class="table-wrapper" style="max-height: 180px;">
+                <h3>User Management</h3>
+                <p style="font-size: 12px; color: #94a3b8; margin-bottom: 5px; text-align: center;">စုစုပေါင်းဝင်ထားသော User စာရင်းနှင့် ထိန်းချုပ်မှု</p>
+                
+                <div class="table-wrapper">
                     <table>
-                        <thead><tr><th>Email</th><th>Action</th></tr></thead>
-                        <tbody id="userTableBody"></tbody>
+                        <thead>
+                            <tr>
+                                <th>User Email</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            </tbody>
                     </table>
                 </div>
                 
                 <hr style="border: 1px solid #334155; margin: 15px 0;">
-                <h3>Broadcast</h3>
-                <textarea id="broadcastMsg" rows="3" placeholder="User အားလုံးဆီ စာပို့ရန်..."></textarea>
-                <button class="btn" onclick="sendBroadcast()">Send</button>
+                <h3>Broadcast Notification</h3>
+                <textarea id="broadcastMsg" rows="3" placeholder="User အားလုံးဆီ စာတိုတစ်ပြိုင်နက်ပို့ရန်..."></textarea>
+                <button class="btn" onclick="sendBroadcast()">Send Announcement</button>
             </div>
 
         </div>
@@ -157,9 +175,50 @@
         loadSkinPrices();
         loadRulesDropdown();
         
-        // Contacts တွေကို Input တွေထဲ ကြိုဆွဲထည့်ထားမယ်
         db.ref('app_data/contacts/rules_page').once('value', s => { if(s.val()) document.getElementById('rulesContactInput').value = s.val(); });
         db.ref('app_data/contacts/skin_page').once('value', s => { if(s.val()) document.getElementById('skinContactInput').value = s.val(); });
+    }
+
+    /* --- User List & Management Logic --- */
+    function loadUsers() {
+        db.ref('users').on('value', (snapshot) => {
+            const tbody = document.getElementById('userTableBody');
+            tbody.innerHTML = "";
+            
+            if(!snapshot.exists()) {
+                tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#94a3b8;">User စာရင်းမရှိသေးပါ</td></tr>`;
+                return;
+            }
+
+            snapshot.forEach(child => {
+                const userId = child.key;
+                const userData = child.val();
+                
+                // Active သို့မဟုတ် Banned ပြသရန် Badge ဒီဇိုင်း
+                const statusBadge = userData.isBanned ? 
+                    `<span class="status-banned">Banned</span>` : 
+                    `<span class="status-active">Active</span>`;
+                
+                // Ban ရန်/Unban ရန် ခလုတ်များ
+                const actionButton = userData.isBanned ? 
+                    `<button class="action-btn unban-btn" onclick="changeUserStatus('${userId}', false)">Unban</button>` : 
+                    `<button class="action-btn ban-btn" onclick="changeUserStatus('${userId}', true)">Ban User</button>`;
+
+                tbody.innerHTML += `<tr>
+                    <td>${userData.email}</td>
+                    <td>${statusBadge}</td>
+                    <td>${actionButton}</td>
+                </tr>`;
+            });
+        });
+    }
+
+    function changeUserStatus(userId, banState) {
+        const confirmText = banState ? "ဤဝင်ရောက်သူကို တကယ် Ban မှာ သေချာပါသလား?" : "ဤဝင်ရောက်သူကို Unban ပေးမှာ သေချာပါသလား?";
+        if(confirm(confirmText)) {
+            db.ref('users/' + userId).update({ isBanned: banState })
+              .then(() => alert("User အခြေအနေ ပြောင်းလဲမှု အောင်မြင်သည်"));
+        }
     }
 
     /* --- Rules Operations --- */
@@ -241,21 +300,6 @@
     function saveContact(pageKey, inputId) {
         const text = document.getElementById(inputId).value;
         db.ref('app_data/contacts/' + pageKey).set(text).then(() => alert("Contact ပြောင်းလဲမှု အောင်မြင်သည်"));
-    }
-
-    /* --- User Ban/Unban & Broadcast --- */
-    function loadUsers() {
-        db.ref('users').on('value', (snapshot) => {
-            const tbody = document.getElementById('userTableBody');
-            tbody.innerHTML = "";
-            snapshot.forEach(child => {
-                const u = child.val();
-                const btn = u.isBanned ? 
-                    `<button class="action-btn unban-btn" onclick="db.ref('users/${child.key}').update({isBanned:false})">Unban</button>` :
-                    `<button class="action-btn ban-btn" onclick="db.ref('users/${child.key}').update({isBanned:true})">Ban</button>`;
-                tbody.innerHTML += `<tr><td>${u.email}</td><td>${btn}</td></tr>`;
-            });
-        });
     }
 
     function sendBroadcast() {
