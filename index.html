@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KCMT BUSSID FAMILY Official</title>
+    <title>KCMT BUSSID FAMILY</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         
@@ -51,17 +51,13 @@
         .bus-small-row { display: flex; gap: 10px; }
         .bus-small { width: 48%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        /* --- Rules Styles --- */
-        .rule-box { background: #f0f7ff; padding: 15px; border-radius: 15px; margin-bottom: 15px; text-align: left; border-left: 5px solid #0d3b85; }
-        .rule-box h4 { margin-bottom: 10px; color: #0d3b85; border-bottom: 1px solid #d0e4ff; }
-        .rule-box p { font-size: 14.5px; line-height: 1.6; margin-bottom: 8px; }
-        .important-box { background: #fff3e0; border-left: 5px solid #ff9800; }
-        .important-box h4 { color: #e65100; }
+        /* --- Content Design --- */
+        .price-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #ccc; font-weight: bold; color: #1E3A8A; font-size: 18px; }
+        .rule-box { background: #f0f7ff; padding: 15px; border-radius: 15px; margin-bottom: 15px; text-align: left; border-left: 5px solid #0d3b85; white-space: pre-line; }
+        .rule-box h4 { margin-bottom: 10px; color: #0d3b85; border-bottom: 1px solid #d0e4ff; padding-bottom: 5px; }
+        .rule-box p { font-size: 14.5px; line-height: 1.6; }
 
-        .contact-section { 
-            background: #0d3b85; color: white; padding: 20px; border-radius: 20px; 
-            text-align: left; margin-top: 20px; 
-        }
+        .contact-section { background: #0d3b85; color: white; padding: 20px; border-radius: 20px; text-align: left; margin-top: 20px; white-space: pre-line; }
         .contact-section h4 { border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; margin-bottom: 10px; }
 
         .back-btn { background: #0d3b85; color: white; padding: 10px 20px; border-radius: 10px; border: none; margin-bottom: 15px; cursor: pointer; float: left; }
@@ -71,7 +67,6 @@
 
 <div class="container">
 
-    <!-- Landing Page -->
     <div id="landingPage">
         <div class="kcmt-logo">KCMT</div>
         <div class="family-tag">BUSSID FAMILY</div>
@@ -83,7 +78,6 @@
         </div>
     </div>
 
-    <!-- Register Page -->
     <div id="registerPage" class="auth-page">
         <div class="kcmt-logo" style="font-size: 40px;">KCMT</div>
         <div class="auth-card">
@@ -95,7 +89,6 @@
         <p style="margin-top: 20px; cursor: pointer;" onclick="navTo('landingPage')">Back</p>
     </div>
 
-    <!-- Login Page -->
     <div id="loginPage" class="auth-page">
         <div class="kcmt-logo" style="font-size: 40px;">KCMT</div>
         <div class="auth-card">
@@ -107,7 +100,6 @@
         <p style="margin-top: 20px; cursor: pointer;" onclick="navTo('landingPage')">Back</p>
     </div>
 
-    <!-- Main Menu -->
     <div id="menuPage" class="app-page">
         <div class="header-title">KCMT BUSSID FAMILY</div>
         <div class="white-section">
@@ -129,73 +121,45 @@
         </div>
     </div>
 
-    <!-- Skin Service Page -->
     <div id="skinPage" class="app-page">
         <div class="header-title">KCMT BUSSID FAMILY</div>
         <div class="white-section">
             <button class="back-btn" onclick="navTo('menuPage')">← Back</button>
             <h3 style="margin-bottom: 20px; clear: both;">Skin ဈေးနှုန်းများ</h3>
-            <div class="rule-box">
-                <p><strong>Yutong:</strong> 2000 | <strong>SCANIA:</strong> 1000</p>
-                <p><strong>HIGER:</strong> 2000 | <strong>ZhongTong:</strong> 2000</p>
-                <p><strong>SUNLONG:</strong> 2000</p>
-            </div>
-            <div class="rule-box important-box">
-                <h4>[ Skin ထည့်နည်း ]</h4>
-                <p>📌 Skin ထည့်နည်းကို Photo ဖြင့် သေချာရှင်းပြထားပါသည်။</p>
-                <p>Skin ဆွဲရာကြာချိန် - 1Day or 2Day</p>
-            </div>
-            <div class="contact-section">
+            
+            <div id="skinPriceContainer" class="rule-box" style="border-left: none; background: #fff; padding: 0;"></div>
+
+            <div id="skinNoteContainer"></div>
+
+            <div class="contact-section" id="skinContactContainer">
                 <h4>ဝယ်ချင်ပါက ဆက်သွယ်ရန် 🌐</h4>
-                <p>OWNER - @Kcmtbussidfamilyofficial</p>
+                <p id="skinContactText">OWNER - @Kcmtbussidfamilyofficial</p>
             </div>
         </div>
     </div>
 
-    <!-- Rules Page -->
     <div id="rulesPage" class="app-page">
         <div class="header-title">KCMT BUSSID FAMILY</div>
         <div class="white-section">
             <button class="back-btn" onclick="navTo('menuPage')">← Back</button>
             <h3 style="margin-bottom: 20px; clear: both;">စည်းကမ်းချက်များ</h3>
             
-            <div class="rule-box">
-                <h4>[ သိထားရန် ]</h4>
-                <p>• APK OBB ထည့်တတ်ရမည် (Video နှင့်ရှင်းပြထားသည်)</p>
-                <p>• Room ဝင်တတ်ရမည် (Photo နှင့်ရှင်းပြထားသည်)</p>
-                <p>• Skin ထည့်တတ်ရမည် (Photo နှင့်ရှင်းပြထားသည်)</p>
-            </div>
+            <div id="rulesContainer"></div>
 
-            <div class="rule-box important-box">
-                <h4>[ အရေးကြီးဆုံး စည်းကမ်း ]</h4>
-                <p>• ကားကိုသေချာမောင်းတတ်ရမည်။</p>
-                <p>• စီယာတိုင်ကို ကောင်းကောင်းထိန်းတတ်ရမည်။</p>
-                <p>• ကားပါကင်ကို စနစ်တကျ ကောင်းကောင်းထိုးတတ်ရမည်။</p>
-            </div>
-
-            <div class="rule-box">
-                <h4>[ GP & Room Rules ]</h4>
-                <p>၁။ GP ထဲတွင် ဆဲဆိုခြင်းမလုပ်ရပါ။</p>
-                <p>၂။ Room မောင်းချိန် ညာပြမှကျော်ပါ၊ ဘယ်ပြရင် မကျော်ပါနဲ့။</p>
-                <p>၃။ Video ရိုက်စဉ် ၁၀၀ ကျော် မမောင်းရပါ။</p>
-            </div>
-
-            <div class="contact-section">
+            <div class="contact-section" id="rulesContactContainer">
                 <h4>ဝင်ချင်ပါက ဆက်သွယ်ရန် 🌐</h4>
-                <p>OWNER - @Kcmtbussidfamilyofficial</p>
-                <p>ADMIN 1 - @mgkhannt | ADMIN 2 - @Karl_Saxby</p>
+                <p id="rulesContactText">OWNER - @Kcmtbussidfamilyofficial</p>
             </div>
         </div>
     </div>
 
 </div>
 
-<!-- Firebase Scripts -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
 <script>
-    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyC2bUX2HzRYeRxQ8ogZ4t9Fe8MF3Kze_rI",
       authDomain: "bussidmyanmar.firebaseapp.com",
@@ -209,11 +173,73 @@
 
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
+    const db = firebase.database();
 
     auth.onAuthStateChanged((user) => {
-        if (user) { navTo('menuPage'); } 
-        else { navTo('landingPage'); }
+        if (user) {
+            db.ref('users/' + user.uid).once('value').then((snapshot) => {
+                const userData = snapshot.val();
+                if (userData && userData.isBanned === true) {
+                    alert("သင်၏အကောင့်သည် စည်းကမ်းချက်များကြောင့် Ban ခံထားရပါသည်။");
+                    auth.signOut();
+                } else {
+                    navTo('menuPage');
+                    listenToData(); // ဒေတာတွေ စောင့်ဖတ်ရန်
+                }
+            });
+        } else {
+            navTo('landingPage');
+        }
     });
+
+    // Firebase ကနေ စည်းကမ်းချက်နဲ့ Skin ဈေးနှုန်းတွေကို Realtime ဆွဲထုတ်ပြသခြင်း
+    function listenToData() {
+        // Rules ဆွဲရန်
+        db.ref('app_data/rules').on('value', (snapshot) => {
+            const container = document.getElementById('rulesContainer');
+            container.innerHTML = "";
+            snapshot.forEach((child) => {
+                const data = child.val();
+                container.innerHTML += `<div class="rule-box ${data.isImportant ? 'important-box' : ''}">
+                    <h4>${data.title}</h4>
+                    <p>${data.content}</p>
+                </div>`;
+            });
+        });
+
+        // Rules Contact ဆွဲရန်
+        db.ref('app_data/contacts/rules_page').on('value', snapshot => {
+            if(snapshot.val()) document.getElementById('skinContactText').innerText = snapshot.val();
+        });
+
+        // Skin Prices ဆွဲရန်
+        db.ref('app_data/skin_prices').on('value', (snapshot) => {
+            const container = document.getElementById('skinPriceContainer');
+            container.innerHTML = "";
+            snapshot.forEach((child) => {
+                const data = child.val();
+                container.innerHTML += `<div class="price-row"><span>${data.name}</span> <span>${data.price}</span></div>`;
+            });
+        });
+
+        // Skin Notes ဆွဲရန်
+        db.ref('app_data/skin_notes').on('value', (snapshot) => {
+            const container = document.getElementById('skinNoteContainer');
+            container.innerHTML = "";
+            snapshot.forEach((child) => {
+                const data = child.val();
+                container.innerHTML += `<div class="rule-box important-box">
+                    <h4>${data.title}</h4>
+                    <p>${data.content}</p>
+                </div>`;
+            });
+        });
+        
+        // Skin Contact ဆွဲရန်
+        db.ref('app_data/contacts/skin_page').on('value', snapshot => {
+            if(snapshot.val()) document.getElementById('rulesContactText').innerText = snapshot.val();
+        });
+    }
 
     function navTo(id) {
         const pages = ['landingPage', 'registerPage', 'loginPage', 'menuPage', 'skinPage', 'rulesPage'];
@@ -226,18 +252,20 @@
     function register() {
         const email = document.getElementById('regEmail').value;
         const pass = document.getElementById('regPass').value;
-        if(!email || !pass) return alert("ဖြည့်စွက်ပါ");
-        auth.createUserWithEmailAndPassword(email, pass).catch(err => alert(err.message));
+        if(!email || !pass) return alert("Email နှင့် Password ဖြည့်ပါ");
+        auth.createUserWithEmailAndPassword(email, pass).then((u) => {
+            db.ref('users/' + u.user.uid).set({ email: email, isBanned: false });
+            alert("အကောင့်ဖွင့်ခြင်း အောင်မြင်ပါသည်");
+        }).catch(err => alert(err.message));
     }
 
     function login() {
         const email = document.getElementById('loginEmail').value;
         const pass = document.getElementById('loginPass').value;
-        auth.signInWithEmailAndPassword(email, pass).catch(err => alert("မှားယွင်းနေပါသည်"));
+        auth.signInWithEmailAndPassword(email, pass).catch(err => alert("အီးမေးလ် သို့မဟုတ် စကားဝှက် မှားယွင်းနေပါသည်။"));
     }
 
     function logout() { auth.signOut(); }
 </script>
-
 </body>
 </html>
